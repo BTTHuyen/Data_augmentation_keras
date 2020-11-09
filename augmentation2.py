@@ -10,16 +10,16 @@ generator = tf.keras.preprocessing.image.ImageDataGenerator(
     zoom_range=0.5, width_shift_range=0.2, brightness_range = (0.5, 1.5), channel_shift_range = 50
 )
 
-imgs = os.listdir("Coin_Banknote/images")
+imgs = os.listdir("images")
 
 for file_name in imgs:
-    img=load_img("Coin_Banknote/images/"+file_name)
+    img=load_img("images/"+file_name)
     x = img_to_array(img)
     #x = x.reshape((1,) + x.shape)
     x = expand_dims(x, 0)
 
     i = 0
-    for batch in generator.flow (x, batch_size=1, save_to_dir =r'new_images4', save_prefix =file_name[:-4]+"br", save_format='jpg'):
+    for batch in generator.flow (x, batch_size=1, save_to_dir =r'new_images', save_prefix =file_name[:-4]+"br", save_format='jpg'):
         i+=1
         if i>0:
             break
